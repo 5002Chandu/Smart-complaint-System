@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart College Complaint System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Smart College Complaint & Resolution System</h1>
+    <p>Report • Track • Resolve</p>
+</header>
+
+<nav>
+    <button onclick="showPage('studentPage')">Student Portal</button>
+    <button onclick="showPage('adminPage')">Admin Dashboard</button>
+</nav>
+
+<!-- STUDENT PAGE -->
+<section id="studentPage" class="page">
+
+    <div class="container">
+
+        <h2>Submit a Complaint</h2>
+
+        <form id="complaintForm">
+
+            <label>Student Name</label>
+            <input type="text" id="studentName" required>
+
+            <label>USN / Student ID</label>
+            <input type="text" id="studentId" required>
+
+            <label>Complaint Category</label>
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option>Classroom</option>
+                <option>Hostel</option>
+                <option>Laboratory</option>
+                <option>Wi-Fi / Internet</option>
+                <option>Cleanliness</option>
+                <option>Transport</option>
+                <option>Library</option>
+                <option>Other</option>
+            </select>
+
+            <label>Priority</label>
+            <select id="priority" required>
+                <option value="">Select Priority</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Urgent</option>
+            </select>
+
+            <label>Complaint Description</label>
+            <textarea id="description"
+                      placeholder="Describe your problem..."
+                      required></textarea>
+
+            <button type="submit" class="submit-btn">
+                Submit Complaint
+            </button>
+
+        </form>
+
+        <div id="complaintResult"></div>
+
+        <hr>
+
+        <h2>Track Complaint</h2>
+
+        <div class="track-box">
+            <input type="text"
+                   id="trackId"
+                   placeholder="Enter Complaint ID">
+
+            <button onclick="trackComplaint()">
+                Track
+            </button>
+        </div>
+
+        <div id="trackingResult"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN PAGE -->
+<section id="adminPage" class="page hidden">
+
+    <div class="container">
+
+        <h2>Admin Dashboard</h2>
+
+        <div class="dashboard">
+
+            <div class="card">
+                <h3>Total</h3>
+                <p id="totalCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Pending</h3>
+                <p id="pendingCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>In Progress</h3>
+                <p id="progressCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Resolved</h3>
+                <p id="resolvedCount">0</p>
+            </div>
+
+        </div>
+
+        <div class="admin-controls">
+
+            <input type="text"
+                   id="searchComplaint"
+                   placeholder="Search Complaint ID / Student"
+                   onkeyup="displayComplaints()">
+
+            <select id="statusFilter"
+                    onchange="displayComplaints()">
+
+                <option value="All">All Status</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Assigned">Assigned</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+
+            </select>
+
+        </div>
+
+        <div id="complaintTable"></div>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
